@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="cou" format="json">
+      <types:shape format="weave" example="examples/cou.json"><![CDATA[%dw 2.0
+
+type cou = Array<{|  color: String,   value: String|} | Null> {"example": "[{\"color\":\"red\",\"value\":\"#f00\"},{\"color\":\"green\",\"value\":\"#0f0\"},null]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="c" format="json">
+      <types:shape format="weave" example="examples/id-9.json"><![CDATA[%dw 2.0
+
+type c = Array<{|  id: String,   "type": String|}> {"example": "[{\"id\":\"5001\",\"type\":\"None\"},{\"id\":\"5002\",\"type\":\"Glazed\"}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="cw" format="csv">
+      <types:shape format="weave" example="examples/id-6.csv"><![CDATA[%dw 2.0
+
+type cw = Array<{|  z: String,   "zo ": String|}>
+
+]]></types:shape>
+      <types:properties>
+        <types:property name="headerLineNumber" value="0"/>
+        <types:property name="header" value="false"/>
+        <types:property name="isQuotedString" value="false"/>
+      </types:properties>
+    </types:type>
+    <types:type name="ce" format="json">
+      <types:shape format="weave" example="examples/cou-3.json"><![CDATA[%dw 2.0
+
+type ce = Array<{|  color: String,   value: String|}> {"example": "[{\"color\":\"red\",\"value\":\"#f00\"},{\"color\":\"green\",\"value\":\"#0f0\"}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="cc" format="csv">
+      <types:shape format="weave" example="examples/id-5.csv"><![CDATA[%dw 2.0
+
+type cc = Array<{|  z: String,   "zo ": String|}>
+
+]]></types:shape>
+      <types:properties>
+        <types:property name="headerLineNumber" value="0"/>
+        <types:property name="header" value="true"/>
+        <types:property name="isQuotedString" value="false"/>
+      </types:properties>
+    </types:type>
+    <types:type name="x" format="csv">
+      <types:shape format="weave" example="examples/id-8.csv"><![CDATA[%dw 2.0
+
+type x = Array<{|  z: String,   "zo ": String|}>
+
+]]></types:shape>
+      <types:properties>
+        <types:property name="headerLineNumber" value="0"/>
+        <types:property name="header" value="false"/>
+        <types:property name="isQuotedString" value="false"/>
+      </types:properties>
+    </types:type>
+    <types:type name="c1" format="json">
+      <types:shape format="weave" example="examples/cou-5.json"><![CDATA[%dw 2.0
+
+type c1 = Array<{|  color: String,   value: String|}> {"example": "[{\"color\":\"red\",\"value\":\"#f00\"},{\"color\":\"green\",\"value\":\"#0f0\"}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="c2" format="csv">
+      <types:shape format="weave" example="examples/id-7.csv"><![CDATA[%dw 2.0
+
+type c2 = Array<{|  z: String,   "zo ": String|}>
+
+]]></types:shape>
+      <types:properties>
+        <types:property name="headerLineNumber" value="0"/>
+        <types:property name="header" value="false"/>
+        <types:property name="isQuotedString" value="false"/>
+      </types:properties>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#a52d1e2b-05a3-480a-81db-29c9f462d215">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="ce"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="cw"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#7b90070e-c2d5-4048-a0e5-dfcdce02e860">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="x"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="cc"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#83f6f959-4aba-4e63-9bae-992cbe267fc9"/>
+  <types:enrichment select="#7596edb0-c4f2-404d-b8ac-e0d0411b7d0c">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="c1"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="c2"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>
